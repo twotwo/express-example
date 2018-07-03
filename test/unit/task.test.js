@@ -1,24 +1,30 @@
-'use strict';
+"use strict"
 
-var expect = require('expect.js');
+const debug = require("debug")("test:unit:models/task")
 
-describe('models/task', function () {
-  before(function () {
-      return require('../../models').sequelize.sync();
-  });
+describe("models/task", () => {
+  beforeAll(() => {
+    return require("../../models").sequelize.sync()
+  })
 
-  beforeEach(function () {
-    this.User = require('../../models').User;
-    this.Task = require('../../models').Task;
-  });
+  beforeEach(() => {
+    this.User = require("../../models").User
+    this.Task = require("../../models").Task
+  })
 
-  describe('create', function () {
-    it('creates a task', function () {
-      return this.User.create({ username: 'johndoe' }).bind(this).then(function (user) {
-        return this.Task.create({ title: 'a title', UserId: user.id }).then(function (task) {
-          expect(task.title).to.equal('a title');
-        });
-      });
-    });
-  });
-});
+  describe("create", () => {
+    test("creates a task", () => {
+      return this.User.create({ username: "johndoe" })
+        .bind(this)
+        .then(user => {
+          debug("user = %O", user.dataValues)
+          return this.Task.create({ title: "a title", UserId: user.id }).then(
+            task => {
+              debug("task = %O", task.dataValues)
+              expect(task.title).toBe("a title")
+            }
+          )
+        })
+    })
+  })
+})

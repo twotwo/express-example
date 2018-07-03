@@ -1,15 +1,17 @@
-'use strict';
+"use strict"
 
-var expect = require('expect.js');
+const debug = require("debug")("test:unit:models/index")
 
-describe('models/index', function () {
-  it('returns the task model', function () {
-    var models = require('../../models');
-    expect(models.Task).to.be.ok();
-  });
+describe("models/index", () => {
+  test("returns the task model", () => {
+    const models = require("../../models")
+    // debug("models.Task = %O", models.Task)
+    expect(models.Task).not.toBeNull()
+  })
 
-  it('returns the user model', function () {
-    var models = require('../../models');
-    expect(models.User).to.be.ok();
-  });
-});
+  test("returns the user model", () => {
+    const models = require("../../models")
+    // debug("models.User = %O", models.User)
+    expect(models.User).not.toBeNull()
+  })
+})
