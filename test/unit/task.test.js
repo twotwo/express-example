@@ -4,6 +4,7 @@ const debug = require("debug")("test:unit:models/task")
 
 describe("models/task", () => {
   beforeAll(() => {
+    // Sync all models that aren't already in the database
     return require("../../models").sequelize.sync()
   })
 
