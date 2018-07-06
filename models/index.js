@@ -27,9 +27,10 @@ fs.readdirSync(__dirname)
     )
   })
   .forEach(file => {
-    const model = sequelize["import"](path.join(__dirname, file))
+    //http://docs.sequelizejs.com/manual/tutorial/models-definition.html#import
+    const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
-    debug("load model[%s] from file: %s", model.name, file)
+    debug("import model[%s] from file: %s", model.name, file)
   })
 
 Object.keys(db).forEach(modelName => {
